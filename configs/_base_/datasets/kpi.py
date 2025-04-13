@@ -5,11 +5,11 @@ crop_size = (2048, 2048)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', reduce_zero_label=True),
-    dict(
-        type='RandomResize',
-        scale=(2048, 2048),
-        ratio_range=(1.0, 1.0),
-        keep_ratio=True),
+    # dict(
+    #     type='RandomResize',
+    #     scale=(2048, 2048),
+    #     ratio_range=(1.0, 1.0),
+    #     keep_ratio=True),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
     dict(type='RandomFlip', prob=0.5),
     dict(type='PhotoMetricDistortion'),
@@ -17,7 +17,7 @@ train_pipeline = [
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='Resize', scale=(2048, 2048), keep_ratio=True),
+    # dict(type='Resize', scale=(2048, 2048), keep_ratio=True),
     # add loading annotation after ``Resize`` because ground truth
     # does not need to do resize data transform
     dict(type='LoadAnnotations', reduce_zero_label=True),
@@ -40,7 +40,7 @@ tta_pipeline = [
         ])
 ]
 train_dataloader = dict(
-    batch_size=4,
+    batch_size=1,
     num_workers=4,
     persistent_workers=True,
     sampler=dict(type='InfiniteSampler', shuffle=True),
