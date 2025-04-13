@@ -48,7 +48,7 @@ train_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
-            img_path='train/Task1_patch_level/train/normal/img', seg_map_path='train/Task1_patch_level/train/normal/mask'),
+            img_path='train/Task1_patch_level/train/normal/img', seg_map_path='train/Task1_patch_level/train/normal/mask/png_files'),
         pipeline=train_pipeline))
 
 val_dataloader = dict(
@@ -61,7 +61,7 @@ val_dataloader = dict(
         data_root=data_root,
         data_prefix=dict(
             img_path='validation/Task1_patch_level/validation/normal/img',
-            seg_map_path='validation/Task1_patch_level/validation/normal/mask'),
+            seg_map_path='validation/Task1_patch_level/validation/normal/mask/png_files'),
         pipeline=test_pipeline))
 
 test_dataloader = dict(
@@ -74,7 +74,7 @@ test_dataloader = dict(
         data_root=data_root,
         data_prefix=dict(
             img_path='test/Task1_patch_level/test/normal/img',
-            seg_map_path='test/Task1_patch_level/test/normal/mask'),
+            seg_map_path='test/Task1_patch_level/test/normal/mask/png_files'),
         pipeline=test_pipeline))
 
 val_evaluator = dict(type='IoUMetric', iou_metrics=['mIoU'])
