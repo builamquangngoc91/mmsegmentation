@@ -1,11 +1,11 @@
 _base_ = [
-    '../_base_/default_runtime.py', '../_base_/schedules/schedule_20k.py',
+    '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py',
     '../_base_/datasets/kpi.py'
 ]
 # model settings
 checkpoint_file = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/segnext/mscan_t_20230227-119e8c9f.pth'  # noqa
 ham_norm_cfg = dict(type='GN', num_groups=32, requires_grad=True)
-crop_size = (1024, 1024)
+crop_size = (512, 512)
 data_preprocessor = dict(
     type='SegDataPreProcessor',
     mean=[123.675, 116.28, 103.53],
@@ -13,7 +13,7 @@ data_preprocessor = dict(
     bgr_to_rgb=True,
     pad_val=0,
     seg_pad_val=255,
-    size=(1024, 1024),
+    size=(512, 512),
     test_cfg=dict(size_divisor=32))
 model = dict(
     type='EncoderDecoder',
@@ -77,7 +77,7 @@ param_scheduler = [
         type='PolyLR',
         power=1.0,
         begin=1500,
-        end=20000,
+        end=160000,
         eta_min=0.0,
         by_epoch=False,
     )
